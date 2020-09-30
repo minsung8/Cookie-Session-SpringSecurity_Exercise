@@ -21,10 +21,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String loginId) throws UsernameNotFoundException {
-		
 		// loginId에 해당하는 정보를 DB에서 읽어 customUser 객체에 저장
 		// 해당 정보를 CustomUserDetails 객체에 저장
+		System.out.println(loginId);
 		UserEntity customUser = userDbService.getUser(loginId);
+		System.out.println(customUser.getLoginUserId());
+		System.out.println(customUser.getPassword());
 		if (customUser == null) {
 			throw new UsernameNotFoundException("사용자가 입력한 아이디에 해당하는 사용자를 찾을 수 없습니다");
 		}

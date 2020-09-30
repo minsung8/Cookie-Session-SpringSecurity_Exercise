@@ -46,7 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             	.loginPage("/members/loginform")
             	.usernameParameter("userId")
             	.passwordParameter("password")
-            	.loginProcessingUrl("/members/loginerror?login_error=1")
+            	.loginProcessingUrl("/authenticate")
+            	.failureForwardUrl("/members/loginerror?login_error=1")
             	.defaultSuccessUrl("/",true)
             	.permitAll()
             .and()
@@ -60,6 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder encoder() {
 	    return new BCryptPasswordEncoder();
 	}
+	
 	
 	
 }
