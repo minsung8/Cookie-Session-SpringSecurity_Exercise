@@ -26,7 +26,7 @@ public class MemberDao {
 	public MemberDao(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 	}
-	
+	 
 	public Member getMemberByEmail(String email){
 		Map<String, Object> map = new HashMap<>();
 		map.put("email", email);

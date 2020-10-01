@@ -1,6 +1,5 @@
 package org.edwith.webbe.securityexam.config;
 
-import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
@@ -10,11 +9,14 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.TransactionManagementConfigurer;
+
+import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan(basePackages = {"org.edwith.webbe.securityexam.dao", "org.edwith.webbe.securityexam.service"})
 @EnableTransactionManagement
-public class ApplicationConfig implements TransactionManager{
+public class ApplicationConfig implements TransactionManagementConfigurer {
 	
 	private static String driverClassName = "com.mysql.cj.jdbc.Driver";
 	private static String url = "jdbc:mysql://127.0.0.1:3306/connectdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -40,7 +42,7 @@ public class ApplicationConfig implements TransactionManager{
 		return new DataSourceTransactionManager(dataSource());
 	}
 	
-	@Bean
+	@Override
     public PlatformTransactionManager annotationDrivenTransactionManager() {
         return transactionManager();
     }

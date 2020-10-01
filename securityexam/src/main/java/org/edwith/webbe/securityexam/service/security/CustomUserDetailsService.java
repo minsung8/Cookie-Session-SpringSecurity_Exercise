@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,12 +26,10 @@ public class CustomUserDetailsService implements UserDetailsService {
 		// 해당 정보를 CustomUserDetails 객체에 저장
 		System.out.println(loginId);
 		UserEntity customUser = userDbService.getUser(loginId);
-		System.out.println(customUser.getLoginUserId());
-		System.out.println(customUser.getPassword());
 		if (customUser == null) {
 			throw new UsernameNotFoundException("사용자가 입력한 아이디에 해당하는 사용자를 찾을 수 없습니다");
 		}
-		
+		 
 		CustomUserDetails customUserDetails = new CustomUserDetails();
 		customUserDetails.setUsername(customUser.getLoginUserId()); 
 		customUserDetails.setPassword(customUser.getPassword()); 

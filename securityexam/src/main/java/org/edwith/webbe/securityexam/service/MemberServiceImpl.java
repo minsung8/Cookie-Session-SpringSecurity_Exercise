@@ -7,6 +7,7 @@ import org.edwith.webbe.securityexam.dao.MemberDao;
 import org.edwith.webbe.securityexam.dao.MemberRoleDao;
 import org.edwith.webbe.securityexam.dto.Member;
 import org.edwith.webbe.securityexam.dto.MemberRole;
+import org.edwith.webbe.securityexam.service.security.UserDbService;
 import org.edwith.webbe.securityexam.service.security.UserEntity;
 import org.edwith.webbe.securityexam.service.security.UserRoleEntity;
 import org.springframework.stereotype.Service;
@@ -26,11 +27,13 @@ public class MemberServiceImpl implements MemberService{
 		this.memberDao = memberDao;
 		this.memberRoleDao = memberRoleDao;
 	}
-	
+	 
 	@Override
 	@Transactional
 	public UserEntity getUser(String loginUserId) {
 		Member member = memberDao.getMemberByEmail(loginUserId);
+		System.out.println(member.getEmail());
+		System.out.println(member.getPassword());
         return new UserEntity(member.getEmail(), member.getPassword());
 	}
 

@@ -9,7 +9,7 @@ public class UserEntity {
 		this.loginUserId = loginUserId;
 		this.password = password;
 	}
-
+ 
 	public String getLoginUserId() {
 		return loginUserId;
 	}

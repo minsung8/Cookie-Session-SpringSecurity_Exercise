@@ -36,7 +36,7 @@ public class MemberDaoTest {
 		Connection conn = dataSource.getConnection();
 		Assert.assertNotNull(conn);
 	}
-	
+	 
 	@Test
 	public void getUser() throws Exception{
 		Member member = memberDao.getMemberByEmail("carami@example.com");
