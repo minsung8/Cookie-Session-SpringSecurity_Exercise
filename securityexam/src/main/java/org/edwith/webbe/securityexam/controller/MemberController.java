@@ -36,6 +36,21 @@ public class MemberController {
 		return "/members/loginError";
 	}
 	
+	@GetMapping("/welcome")
+	public String welcome() {
+		return "/members/welcome";
+	}
+	
+	@GetMapping("/memberinfo")
+	public String memberinfo(Principal principal, ModelMap modelMap) {
+		String loginId = principal.getName();
+		Member member = memberService.getMemberByEmail(loginId);
+		modelMap.addAttribute("member", member);
+		
+		
+		return "/members/memberinfo";
+	}
+	
 
 
 

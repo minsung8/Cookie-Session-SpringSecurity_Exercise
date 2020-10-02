@@ -20,7 +20,7 @@ public class MemberRole {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+ 
 	public Long getMemberId() {
 		return memberId;
 	}

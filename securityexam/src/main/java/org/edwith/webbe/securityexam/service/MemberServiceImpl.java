@@ -32,8 +32,6 @@ public class MemberServiceImpl implements MemberService{
 	@Transactional
 	public UserEntity getUser(String loginUserId) {
 		Member member = memberDao.getMemberByEmail(loginUserId);
-		System.out.println(member.getEmail());
-		System.out.println(member.getPassword());
         return new UserEntity(member.getEmail(), member.getPassword());
 	}
 
@@ -49,6 +47,12 @@ public class MemberServiceImpl implements MemberService{
 		}
 		
 		return list;
+	}
+
+	@Override
+	@Transactional
+	public Member getMemberByEmail(String loginId) {
+		return memberDao.getMemberByEmail(loginId);
 	}		
 }
 
